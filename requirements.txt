@@ -1,0 +1,540 @@
+# import tkinter as tk
+
+# from modes import MotorModes
+
+
+# class App:
+
+#     def __init__(self,root,serial_manager):
+
+#         self.root = root
+
+#         self.root.title("THRUSTER CONTROL")
+
+#         self.root.geometry("400x500")
+
+#         self.modes = MotorModes(serial_manager)
+
+#         self.selected_motor = tk.IntVar(value=1)
+
+#         self.selected_level = tk.IntVar(value=1)
+
+#         self.selected_direction = tk.StringVar(value="FORWARD")
+
+#         self.build_ui()
+
+#     def build_ui(self):
+
+#         title = tk.Label(
+#             self.root,
+#             text="THRUSTER CONTROL",
+#             font=("Arial",20)
+#         )
+
+#         title.pack(pady=10)
+
+#         # MOTOR
+
+#         motor_frame = tk.LabelFrame(
+#             self.root,
+#             text="SELECT MOTOR"
+#         )
+
+#         motor_frame.pack(pady=10)
+
+#         tk.Radiobutton(
+#             motor_frame,
+#             text="MOTOR 1",
+#             variable=self.selected_motor,
+#             value=1
+#         ).pack(anchor='w')
+
+#         tk.Radiobutton(
+#             motor_frame,
+#             text="MOTOR 2",
+#             variable=self.selected_motor,
+#             value=2
+#         ).pack(anchor='w')
+
+#         # LEVEL
+
+#         level_frame = tk.LabelFrame(
+#             self.root,
+#             text="LEVEL"
+#         )
+
+#         level_frame.pack(pady=10)
+
+#         tk.Radiobutton(
+#             level_frame,
+#             text="LEVEL 1",
+#             variable=self.selected_level,
+#             value=1
+#         ).pack(anchor='w')
+
+#         tk.Radiobutton(
+#             level_frame,
+#             text="LEVEL 2",
+#             variable=self.selected_level,
+#             value=2
+#         ).pack(anchor='w')
+
+#         tk.Radiobutton(
+#             level_frame,
+#             text="LEVEL 3",
+#             variable=self.selected_level,
+#             value=3
+#         ).pack(anchor='w')
+
+#         # DIRECTION
+
+#         direction_frame = tk.LabelFrame(
+#             self.root,
+#             text="DIRECTION"
+#         )
+
+#         direction_frame.pack(pady=10)
+
+#         tk.Radiobutton(
+#             direction_frame,
+#             text="FORWARD",
+#             variable=self.selected_direction,
+#             value="FORWARD"
+#         ).pack(anchor='w')
+
+#         tk.Radiobutton(
+#             direction_frame,
+#             text="BACKWARD",
+#             variable=self.selected_direction,
+#             value="BACKWARD"
+#         ).pack(anchor='w')
+
+#         # MODES
+
+#         mode_frame = tk.LabelFrame(
+#             self.root,
+#             text="MODES"
+#         )
+
+#         mode_frame.pack(pady=10)
+
+#         tk.Button(
+#             mode_frame,
+#             text="CONSTANT",
+#             width=20,
+#             command=self.constant_mode
+#         ).pack(pady=5)
+
+#         tk.Button(
+#             mode_frame,
+#             text="RAMP UP",
+#             width=20,
+#             command=self.ramp_up_mode
+#         ).pack(pady=5)
+
+#         tk.Button(
+#             mode_frame,
+#             text="RAMP DOWN",
+#             width=20,
+#             command=self.ramp_down_mode
+#         ).pack(pady=5)
+
+#         tk.Button(
+#             mode_frame,
+#             text="STOP",
+#             width=20,
+#             command=self.stop_motor
+#         ).pack(pady=5)
+
+#     def get_values(self):
+
+#         return (
+#             self.selected_motor.get(),
+#             self.selected_level.get(),
+#             self.selected_direction.get()
+#         )
+
+#     def constant_mode(self):
+
+#         motor,level,direction = self.get_values()
+
+#         self.modes.constant_mode(
+#             motor,
+#             level,
+#             direction
+#         )
+
+#     def ramp_up_mode(self):
+
+#         motor,level,direction = self.get_values()
+
+#         self.modes.ramp_up_mode(
+#             motor,
+#             level,
+#             direction
+#         )
+
+#     def ramp_down_mode(self):
+
+#         motor,level,direction = self.get_values()
+
+#         self.modes.ramp_down_mode(
+#             motor,
+#             level,
+#             direction
+#         )
+
+#     def stop_motor(self):
+
+#         motor = self.selected_motor.get()
+
+#         self.modes.stop_motor(motor)
+# import tkinter as tk
+
+# from modes import MotorModes
+
+
+# class App:
+
+#     def __init__(self, root, serial_manager):
+
+#         self.root = root
+
+#         self.root.title("THRUSTER CONTROL")
+
+#         self.root.geometry("600x750")
+
+#         self.modes = MotorModes(serial_manager)
+
+#         # =========================
+#         # BIẾN LƯU GIÁ TRỊ UI
+#         # =========================
+
+#         self.selected_motor = tk.IntVar(value=1)
+
+#         self.selected_level = tk.IntVar(value=1)
+
+#         self.selected_direction = tk.StringVar(value="FORWARD")
+
+#         # tạo giao diện
+#         self.build_ui()
+
+#     def build_ui(self):
+
+#         # =========================
+#         # TITLE
+#         # =========================
+
+#         title = tk.Label(
+
+#             self.root,
+
+#             text="THRUSTER CONTROL PANEL",
+
+#             font=("Arial", 20)
+
+#         )
+
+#         title.pack(pady=10)
+
+#         # =========================
+#         # MOTOR FRAME
+#         # =========================
+
+#         motor_frame = tk.LabelFrame(
+
+#             self.root,
+
+#             text="SELECT MOTOR",
+
+#             padx=10,
+
+#             pady=10
+
+#         )
+
+#         motor_frame.pack(
+
+#             pady=10,
+
+#             fill="x",
+
+#             padx=20
+
+#         )
+
+#         # tạo 6 radiobutton motor
+#         for i in range(1, 7):
+
+#             tk.Radiobutton(
+
+#                 motor_frame,
+
+#                 text=f"MOTOR {i}",
+
+#                 variable=self.selected_motor,
+
+#                 value=i
+
+#             ).pack(anchor='w')
+
+#         # =========================
+#         # LEVEL FRAME
+#         # =========================
+
+#         level_frame = tk.LabelFrame(
+
+#             self.root,
+
+#             text="SELECT SPEED LEVEL",
+
+#             padx=10,
+
+#             pady=10
+
+#         )
+
+#         level_frame.pack(
+
+#             pady=10,
+
+#             fill="x",
+
+#             padx=20
+
+#         )
+
+#         tk.Radiobutton(
+
+#             level_frame,
+
+#             text="LEVEL 1",
+
+#             variable=self.selected_level,
+
+#             value=1
+
+#         ).pack(anchor='w')
+
+#         tk.Radiobutton(
+
+#             level_frame,
+
+#             text="LEVEL 2",
+
+#             variable=self.selected_level,
+
+#             value=2
+
+#         ).pack(anchor='w')
+
+#         tk.Radiobutton(
+
+#             level_frame,
+
+#             text="LEVEL 3",
+
+#             variable=self.selected_level,
+
+#             value=3
+
+#         ).pack(anchor='w')
+
+#         # =========================
+#         # DIRECTION FRAME
+#         # =========================
+
+#         direction_frame = tk.LabelFrame(
+
+#             self.root,
+
+#             text="SELECT DIRECTION",
+
+#             padx=10,
+
+#             pady=10
+
+#         )
+
+#         direction_frame.pack(
+
+#             pady=10,
+
+#             fill="x",
+
+#             padx=20
+
+#         )
+
+#         tk.Radiobutton(
+
+#             direction_frame,
+
+#             text="FORWARD",
+
+#             variable=self.selected_direction,
+
+#             value="FORWARD"
+
+#         ).pack(anchor='w')
+
+#         tk.Radiobutton(
+
+#             direction_frame,
+
+#             text="BACKWARD",
+
+#             variable=self.selected_direction,
+
+#             value="BACKWARD"
+
+#         ).pack(anchor='w')
+
+#         # =========================
+#         # MODE FRAME
+#         # =========================
+
+#         mode_frame = tk.LabelFrame(
+
+#             self.root,
+
+#             text="CONTROL MODES",
+
+#             padx=10,
+
+#             pady=10
+
+#         )
+
+#         mode_frame.pack(
+
+#             pady=10,
+
+#             fill="x",
+
+#             padx=20
+
+#         )
+
+#         # CONSTANT BUTTON
+
+#         tk.Button(
+
+#             mode_frame,
+
+#             text="CONSTANT MODE",
+
+#             width=25,
+
+#             height=2,
+
+#             command=self.constant_mode
+
+#         ).pack(pady=5)
+
+#         # RAMP UP BUTTON
+
+#         tk.Button(
+
+#             mode_frame,
+
+#             text="RAMP UP",
+
+#             width=25,
+
+#             height=2,
+
+#             command=self.ramp_up_mode
+
+#         ).pack(pady=5)
+
+#         # RAMP DOWN BUTTON
+
+#         tk.Button(
+
+#             mode_frame,
+
+#             text="RAMP DOWN",
+
+#             width=25,
+
+#             height=2,
+
+#             command=self.ramp_down_mode
+
+#         ).pack(pady=5)
+
+#         # STOP BUTTON
+
+#         tk.Button(
+
+#             mode_frame,
+
+#             text="STOP MOTOR",
+
+#             width=25,
+
+#             height=2,
+
+#             command=self.stop_motor
+
+#         ).pack(pady=5)
+
+#     # =========================
+#     # LẤY GIÁ TRỊ TỪ UI
+#     # =========================
+
+#     def get_values(self):
+
+#         return (
+
+#             self.selected_motor.get(),
+
+#             self.selected_level.get(),
+
+#             self.selected_direction.get()
+
+#         )
+
+#     # =========================
+#     # CALLBACK FUNCTIONS
+#     # =========================
+
+#     def constant_mode(self):
+
+#         motor, level, direction = self.get_values()
+
+#         self.modes.constant_mode(
+
+#             motor,
+
+#             level,
+
+#             direction
+#         )
+
+#     def ramp_up_mode(self):
+
+#         motor, level, direction = self.get_values()
+
+#         self.modes.ramp_up_mode(
+
+#             motor,
+
+#             level,
+
+#             direction
+#         )
+
+#     def ramp_down_mode(self):
+
+#         motor = self.selected_motor.get()
+
+#         self.modes.ramp_down_mode(motor)
+
+#     def stop_motor(self):
+
+#         motor = self.selected_motor.get()
+
+#         self.modes.stop_motor(motor)
+# ui.py

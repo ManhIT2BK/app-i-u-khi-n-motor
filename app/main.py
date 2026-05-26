@@ -1,65 +1,16 @@
-# import tkinter as tk
+import tkinter as tk # thư viện tkinter
 
-# from serial_manager import SerialManager
-# from ui import App
-
-# serial_manager = SerialManager()
-
-# root = tk.Tk()
-
-# app = App(root,serial_manager)
-
-# root.mainloop()
-# import tkinter as tk
-
-# from serial_manager import SerialManager
-# from ui import App
-
-# serial_manager = SerialManager(
-#     port='COM5',
-#     baudrate=9600
-# )
-
-# root = tk.Tk()
-
-# app = App(root,serial_manager)
-
-# root.mainloop()
-# import tkinter as tk
-
-# from serial_manager import SerialManager
-# from ui import App
-
-# print("START")
-
-# serial_manager = SerialManager(
-#     port='COM5',
-#     baudrate=9600
-# )
-
-# print("SERIAL OK")
-
-# root = tk.Tk()
-
-# print("TK OK")
-
-# app = App(root,serial_manager)
-
-# print("APP OK")
-
-# root.mainloop()
-import tkinter as tk
-
-from serial_manager import SerialManager
-from ui import App
+from serial_manager import SerialManager # import lớp SerialManager từ serial_manager.py
+from ui import App # import lớp App từ ui.py (giao diện người dùng)
+import config
 
 serial_manager = SerialManager(
-    port='COM5',
+    port='COM10',
     baudrate=9600
-)
+) # 
 
-root = tk.Tk()
+root = tk.Tk()# tạo cửa sổ chính
 
 app = App(root,serial_manager)
 
-root.mainloop()
+root.mainloop() # chạy liên tục để bắt sự kiện

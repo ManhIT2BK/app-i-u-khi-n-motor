@@ -1,29 +1,9 @@
+# Kết nối Arduino khi khởi tạo
+# Gửi lệnh PWM cho motor theo định dạng motor_id,pwm_value
 
-# import serial
-# import time
-
-
-# class SerialManager:
-
-#     def __init__(self,port,baudrate):
-
-#         self.arduino = serial.Serial(
-#             port,
-#             baudrate,
-#             timeout=1
-#         )
-
-#         time.sleep(2)
-
-#     def send_pwm(self,motor,pwm):
-
-#         message = f"{motor},{pwm}\n"
-
-#         print("SEND:",message)
-
-#         self.arduino.write(message.encode())
-import serial
+import serial 
 import time
+from config import MOTOR_TO_CHANNEL
 
 
 class SerialManager:
@@ -34,7 +14,8 @@ class SerialManager:
             port,
             baudrate,
             timeout=1
-        )
+        )#serial.Serial(...): Mở cổng Serial (UART) kết nối với Arduino
+        #lưu kết nối vào self.arduino để sử dụng
 
         time.sleep(2)
 
@@ -42,7 +23,8 @@ class SerialManager:
 
     def send_pwm(self,motor,pwm):
 
-        message = f"{motor},{pwm}\n"
+        channel = MOTOR_TO_CHANNEL.get(motor, motor)
+        message = f"{channel},{pwm}\n"
 
         print("SEND:",message)
 
